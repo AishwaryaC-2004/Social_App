@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocialApp - Profile</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="index.html">SocialApp</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="profile.html">My Profile</a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+</header>
+
+<main class="profile-layout">
+    <section class="card profile-card">
+        <div id="profileHeader"></div>
+        <div id="photoEditor" class="photo-editor">
+            <h3>Change profile photo</h3>
+            <form id="photoForm">
+                <input id="profileImageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                <small class="muted">JPG, PNG, WEBP or GIF. Maximum 2 MB.</small>
+                <button class="primary-btn" type="submit">Upload Photo</button>
+            </form>
+            <p id="photoMessage" class="message"></p>
+        </div>
+
+        <form id="profileForm">
+            <h3>Edit profile</h3>
+            <input id="profileUsername" maxlength="50" placeholder="Username" required>
+            <textarea id="profileBio" maxlength="255" placeholder="Bio"></textarea>
+            <button class="primary-btn" type="submit">Save changes</button>
+        </form>
+        <p id="profileMessage" class="message"></p>
+    </section>
+
+    <section>
+        <h2>Posts</h2>
+        <div id="profilePosts"></div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", loadProfilePage);
+</script>
+</body>
+</html>

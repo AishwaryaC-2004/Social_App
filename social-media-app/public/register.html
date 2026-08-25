@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocialApp - Register</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+<div class="auth-box card">
+    <div class="brand large">SocialApp</div>
+    <h2>Create your account</h2>
+    <p class="muted">Join the community</p>
+
+    <form id="registerForm">
+        <input type="text" id="username" placeholder="Username" maxlength="50" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password (minimum 6 characters)" required>
+        <button class="primary-btn full" type="submit">Register</button>
+    </form>
+
+    <p id="message" class="message"></p>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    });
+
+    const data = await response.json();
+    const message = document.getElementById("message");
+    message.textContent = data.message;
+
+    if (response.ok) {
+        message.className = "message success";
+        setTimeout(() => window.location.href = "login.html", 900);
+    } else {
+        message.className = "message error";
+    }
+});
+</script>
+</body>
+</html>

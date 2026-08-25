@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocialApp - Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+<div class="auth-box card">
+    <div class="brand large">SocialApp</div>
+    <h2>Welcome back</h2>
+    <p class="muted">Log in to continue</p>
+
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button class="primary-btn full" type="submit">Login</button>
+    </form>
+
+    <p id="message" class="message"></p>
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    });
+
+    const data = await response.json();
+    const message = document.getElementById("message");
+
+    if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        window.location.href = "index.html";
+    } else {
+        message.textContent = data.message;
+        message.className = "message error";
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocialApp</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="index.html">SocialApp</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="profile.html">My Profile</a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+</header>
+
+<main class="layout">
+    <aside class="sidebar card">
+        <h3>People to follow</h3>
+        <div id="users"></div>
+    </aside>
+
+    <section class="feed">
+        <div class="card composer">
+            <h2>Create a post</h2>
+            <textarea id="postContent" maxlength="1000" placeholder="What's on your mind?"></textarea>
+            <div class="composer-footer">
+                <span id="charCount">0 / 1000</span>
+                <button class="primary-btn" onclick="createPost()">Post</button>
+            </div>
+        </div>
+        <div id="posts"></div>
+    </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
